@@ -1,0 +1,16 @@
+{
+  "name": "blog-api",
+  "version": "1.0.0",
+  "description": "backend for a blog application",
+  "main": "index.js",
+  "repository": "git@github.com:valtermartins1301/back-blog-api.git",
+  "author": "valtermartins1301 <valtermartins.1301@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "hapi": "^17.6.0"
+  }
+}
