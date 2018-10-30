@@ -1,6 +1,11 @@
 const Joi = require('joi');
 const { getAllPosts } = require('./handler');
 
+const post = Joi.object({
+  title: Joi.string().required(),
+  content: Joi.string(),
+});
+
 function failAction(request, h, error) {
   console.error(error.toString());
 
@@ -23,7 +28,7 @@ const route = {
     response: {
       failAction,
       schema: {
-        posts: Joi.array()
+        posts: Joi.array().items(post).allow(null),
       },
     }
   },

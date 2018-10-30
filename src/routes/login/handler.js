@@ -7,7 +7,7 @@ const login = function(request) {
   let response = Boom.unauthorized('Invalid email or password');
 
   if(credential) {
-    response ={
+    response = {
       id: credential.id,
       name: credential.name,
       username: credential.username,

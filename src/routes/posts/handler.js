@@ -1,5 +1,9 @@
+const blog = require('service/blog');
+
 const getAllPosts = function() {
-  return [];
+  return {
+    posts: blog.list(),
+  };
 };
 
 module.exports = {
