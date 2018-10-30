@@ -1,6 +1,12 @@
 const Joi = require('joi');
 const { getAllPosts } = require('./handler');
 
+function failAction(request, h, error) {
+  console.error(error.toString());
+
+  return error;
+}
+
 const route = {
   method: 'get',
   path: '/posts',
@@ -10,12 +16,12 @@ const route = {
     tags: ['api', 'posts'],
     validate: {
       headers: Joi.object({
-        'username': Joi.string().required().description('user credentials'),
-      }),
-      failAction: 'error'
+        'authorization': Joi.string().required().description('authorization token'),
+      }).unknown(),
+      failAction
     },
     response: {
-      failAction: 'error',
+      failAction,
       schema: {
         posts: Joi.array()
       },
