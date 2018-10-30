@@ -3,13 +3,15 @@ const Auth = require('service/auth');
 
 const login = function(request) {
   const { email, password } = request.payload;
-  const user = Auth.login({ email, password });
-  let response = Boom.unauthorized('invalid user or password');
+  const credential = Auth.login({ email, password });
+  let response = Boom.unauthorized('Invalid email or password');
 
-  if(user) {
-    response = {
-      name: user.name,
-      id: user.id,
+  if(credential) {
+    response ={
+      id: credential.id,
+      name: credential.name,
+      username: credential.username,
+      token: credential.token,
     };
   }
 

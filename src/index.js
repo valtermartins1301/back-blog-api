@@ -2,12 +2,12 @@ const Inert = require('inert');
 const Vision = require('vision');
 const Hapi = require('hapi');
 const HapiSwagger = require('hapi-swagger');
-const hapiBasicAuth = require('hapi-auth-basic');
+const simpleAuth = require('plugin/simple-auth');
 const routes = require('routes');
 const Auth = require('service/auth');
 
 const registers = [
-  hapiBasicAuth,
+  simpleAuth,
   Inert,
   Vision,
   HapiSwagger
@@ -21,7 +21,7 @@ const registers = [
 
     await server.register(registers);
 
-    server.auth.strategy('simple', 'basic', { validate: Auth.validate });
+    server.auth.strategy('simple', 'custom', { validate: Auth.validate });
     server.auth.default('simple');
 
     await server.start();

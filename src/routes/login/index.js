@@ -1,6 +1,12 @@
 const Joi = require('joi');
 const { login } = require('./handler');
 
+function failAction(request, h, error) {
+  console.error(error.toString());
+
+  return error;
+}
+
 const route = {
   method: 'post',
   path: '/login',
@@ -14,13 +20,15 @@ const route = {
         email: Joi.string().email().required(),
         password: Joi.string().required().min(4),
       },
-      failAction: 'error'
+      failAction,
     },
     response: {
-      failAction: 'error',
+      failAction,
       schema: {
         id: Joi.string().required(),
-        name: Joi.string().required()
+        name: Joi.string().required(),
+        username: Joi.string().required(),
+        token: Joi.string().required(),
       },
     }
   },
