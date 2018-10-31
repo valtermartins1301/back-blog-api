@@ -11,9 +11,11 @@ class Blog{
     return Blog.instance;
   }
 
-  create({ title, }) {
-    const post = new Post({ title });
+  create({ title, content }) {
+    const post = new Post({ title , content });
 
+    POSTS.push(post);
+    
     return post;
   }
 
