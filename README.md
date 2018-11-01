@@ -99,9 +99,9 @@ Failure:
 
 ### Protected endpoints
 
-You need to use the token you get in login on some endpoints as an key in some endpoints.
+You need to use the token you get at `login` on some endpoints.
 
-In enpoints with this icon (:lock:) you need to send an `authorization` header.
+In enpoints with this icon (:lock:) you will need to send an `authorization` header on your request.
 ```header
 authorization: 'token'
 ```
