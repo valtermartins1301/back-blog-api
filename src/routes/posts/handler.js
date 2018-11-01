@@ -17,7 +17,32 @@ const getAllPosts = function() {
   };
 };
 
+const findPost = function({ params }) {
+  const { id } = params;
+  const post = blog.find({ id });
+
+  if(!post) {
+    return Boom.notFound('post not found');
+  }
+
+  return post;
+};
+
+const removePost = function({ params }) {
+  const { id } = params;
+
+  if(!blog.find({ id })) {
+    return Boom.notFound('post not found');
+  }
+
+  blog.delete({ id });
+
+  return null;
+};
+
 module.exports = {
   getAllPosts,
   createPost,
+  findPost,
+  removePost,
 };

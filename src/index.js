@@ -13,9 +13,10 @@ const registers = [
   HapiSwagger
 ];
 
+const server = Hapi.server({ port: 4000 });
+
 (async () => {
   try {
-    const server = Hapi.server({ port: 4000 });
 
     routes.forEach(route => server.route(route));
 
@@ -31,3 +32,5 @@ const registers = [
     process.exit(1);
   }
 })();
+
+module.exports = server;

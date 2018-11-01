@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const { login } = require('./handler');
+const handler = require('./handler');
 
 function failAction(request, h, error) {
   console.error(error.toString());
@@ -10,7 +10,7 @@ function failAction(request, h, error) {
 const route = {
   method: 'post',
   path: '/login',
-  handler: login,
+  handler: (request, reply) => handler.login(request, reply),
   options: {
     description: 'Authenticate a user',
     tags: ['api', 'login'],

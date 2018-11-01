@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const { getAllPosts, createPost } = require('./handler');
+const handler = require('./handler');
 
 const post = Joi.object({
   id: Joi.string().optional(),
@@ -16,7 +16,7 @@ function failAction(request, h, error) {
 const route = [{
   method: 'get',
   path: '/posts',
-  handler: getAllPosts,
+  handler: (request, h) => handler.getAllPosts(request, h),
   options: {
     description: 'List all posts',
     tags: ['api', 'posts'],
@@ -37,7 +37,7 @@ const route = [{
 {
   method: 'post',
   path: '/posts',
-  handler: createPost,
+  handler: (request, h) => handler.createPost(request, h),
   options: {
     description: 'create a post',
     tags: ['api', 'posts'],
@@ -53,7 +53,49 @@ const route = [{
       schema: post
     }
   },
-}
-];
+},
+{
+  method: 'get',
+  path: '/posts/{id}',
+  handler: (request, h) => handler.findPost(request, h),
+  options: {
+    description: 'find a post',
+    tags: ['api', 'posts'],
+    validate: {
+      params: {
+        id: Joi.string().required(),
+      },
+      headers: Joi.object({
+        'authorization': Joi.string().required().description('authorization token'),
+      }).unknown(),
+      failAction
+    },
+    response: {
+      failAction,
+      schema: post
+    }
+  },
+},
+{
+  method: 'delete',
+  path: '/posts/{id}',
+  handler: (request, h) => handler.removePost(request, h),
+  options: {
+    description: 'delete a post',
+    tags: ['api', 'posts'],
+    validate: {
+      params: {
+        id: Joi.string().required(),
+      },
+      headers: Joi.object({
+        'authorization': Joi.string().required().description('authorization token'),
+      }).unknown(),
+      failAction
+    },
+    response: {
+      emptyStatusCode: 204
+    },
+  },
+}];
 
 module.exports = route;

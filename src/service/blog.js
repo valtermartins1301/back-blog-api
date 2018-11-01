@@ -15,11 +15,27 @@ class Blog{
     const post = new Post({ title , content });
 
     POSTS.push(post);
-    
+
     return post;
   }
 
+  find({ id }) {
+    return POSTS.find(post => post.id === id);
+  }
+
   list() {
+    return POSTS;
+  }
+
+  delete({ id }) {
+    const clone = POSTS;
+
+    clone.find((post,index) => {
+      if(post.id === id) {
+        POSTS.splice(index, 1);
+      }
+    });
+
     return POSTS;
   }
 }
