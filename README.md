@@ -59,17 +59,7 @@ email: 'jane@foobar.com',
 password: '1234',
 ```
 
-### Protected endpoints
-
-You need to use an `authentication` token in some endpoints. So you need to authenticate a user to get an `auth` token.
-
-In request with this icon (:lock:) you need to send an authorization header
-```header
-authorization: '68209bd3-b6a7-4a72-ad04-7f1678545a72'
-```
-
-
-### Login :unlock:
+### Login
 
 This method authenticates a user and return an access token.
 
@@ -105,6 +95,15 @@ Failure:
   "error": "Unauthorized",
   "message": "Invalid email or password"
 }
+```
+
+### Protected endpoints
+
+You need to use the token you get in login on some endpoints as an key in some endpoints.
+
+In enpoints with this icon (:lock:) you need to send an `authorization` header.
+```header
+authorization: 'token'
 ```
 
 ### Create a post :lock:
