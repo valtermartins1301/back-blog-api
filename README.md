@@ -43,10 +43,10 @@ You can use two ways:
 
 - [Login](#Login)
 - Post
-  - [Create a post](#Create-a-post)
-  - [List all posts](#List-all-posts)
-  - [Get a post info](#Get-a-post-info)
-  - [Remove a post](#Remove-a-post)
+  - [Create a post](#Create-a-post-lock)
+  - [List all posts](#List-all-posts-lock)
+  - [Get a post info](#Get-a-post-info-lock)
+  - [Remove a post](#Remove-a-post-lock)
 
 ### Users
 First of all, you has to be authenticated to manage your blog.
