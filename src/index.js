@@ -13,7 +13,12 @@ const registers = [
   HapiSwagger
 ];
 
-const server = Hapi.server({ port: 4000 });
+const server = Hapi.server({
+  port: 4000,
+  routes: {
+    cors: true,
+  }
+});
 
 (async () => {
   try {
